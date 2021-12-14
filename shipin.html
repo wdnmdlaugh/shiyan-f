@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>西湖龙井</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      ul{
+        list-style-type:none;
+      	margin:0px auto;
+      	padding:0px;
+      	}
+		.menu{
+			background-color:#000000;
+      	color:#ffffff;
+      	width:100%;
+      	font-weight:bold ;
+      	font-family:"bodoni mt";
+      	font-size: 18px;
+     	 }
+      	.menu ul li:nth-of-type(5){
+      	background-color: white;
+     	  color:#020202;
+      	}
+      	.menu ul{
+        width:100%;
+      	display:flex;
+     	justify-content:center;
+      	}
+      	.menu ul li{
+        width:200px;
+      	line-height:50px;
+      	text-align:center;
+     	 }
+      html,body{
+        width:100%;
+      	height:100%;
+      	overflow:auto;
+      }
+      body{
+        background-image:url("js/adikx-08ay2.png");
+      	background-position:center;
+      	background-repeat:no-repeat;
+          background-size: 100% 100%;
+      }
+      .view{
+        margin-top:100px;
+      	text-align:center;
+      }
+      video{
+        width:1000px;
+      }
+      a{
+        width:200px;
+      	line-height:50px;
+      	text-align:center;
+      	color:#FFFFFF;
+        text-decoration:none;
+      }
+      a:hover img{
+        opacity:0.5;
+      }
+      
+    </style>
+    <script type="text/javascript">
+      function hello1(){
+        document.getElementById("vo").play();
+      }
+      function hello2(){
+        document.getElementById("vo").pause();
+      }
+      function hello3(){
+        document.getElementById("vo").currentTime = 78;
+      }
+      function hello4(){
+        document.getElementById("vo").muted = !document.getElementById("vo").muted;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="menu">
+      <ul>
+        <li></a>制茶过程</li>
+        <li><a href="index.html" >十大名茶</a></li>
+        <li><a href="lishi.html" >相关历史</a></li>
+        <li><a href="mingren.html" >名人趣事</a></li>
+		<li>冲泡方法</li>
+      </ul>
+    </div>
+
+    
+    <div class="view">
+      <input type="button" value="播放" onclick="hello1()" />
+    <input type="button" value="暂停" onclick="hello2()" />
+    <input type="button" value="设置进度" onclick="hello3()" />
+    <input type="button" value="静音" onclick="hello4()" />
+    
+    <br/><br/>
+    <video id="vo" width="700" controls src="js/s.3gp">
+   
+      </video>
+    </div>
+    
+  </body>
+</html>
+
+
+
+<!--<div class="view">
+  <video src="js/s.3gp"
+         controls="controls"
+       >
+-->
