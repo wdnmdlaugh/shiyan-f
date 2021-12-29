@@ -35,12 +35,6 @@
       	line-height:50px;
       	text-align:center;
      	 }
-	  body{
-        background-image:url("js/adikx-08ay2.png");
-      	background-position:center;
-      	background-repeat:no-repeat;
-          background-size: 100% 100%;
-      }
 	  #ba{						
 				width: 100%;
 				height: 100%;
@@ -74,69 +68,74 @@
       a:hover img{
         opacity:0.5;
       }
-	  
-	  
+	  img{
+	          width:400px;
+	          height:200px;
+	        }
+	        #view_box{
+	          width:1000px;
+	          height:200px;
+	          margin:50px auto;
+	          border-radius:25px;
+	          overflow:hidden;
+	        }
+	        #inner{
+	          position:relative;
+	          left:0px;
+	          width:6400px;
+	          height:200px;
+	          display:flex;
+	          justify-content:space-between;
+	        }
+	        #div1,#div2{
+	          width:3200px;
+	          height:200px;
+	          display:flex;
+	          justify-content:space-between;
+	        }  
 	</style>
-	    <script type="text/javascript">
-      
-			var starList = [];//存储星的数组
-			var speed = [];//星的透明度渐变速度
-			
-			//页面加载
-			function init(){
-			  createStar();
-			  starAnimate();
-			}
-			
-			//创建星
-			function createStar(){
-			  //计算星的左边距、上边距
-			  var left = Math.random() * document.body.offsetWidth;
-			  var top = Math.random() * document.body.offsetHeight;
-			  
-			  //创建星，并设置相应参数
-			  var star = document.createElement("img");//创建img标签
-			  star.src = "http://www.yyfun001.com/res/htmlclassics/full/images/star.png";//设置图片内容
-			  star.style.position = "absolute";//绝对定位
-			  star.style.left = left+"px";//左边距
-			  star.style.top = top+"px";//上边距
-			  star.style.opacity = 0;//透明度默认为0
-	  
-			  //将星添加给starList数组
-			  starList.push(star);
-			  //当前星的渐变速度
-			  speed.push(0.01);
-			  
-			  //将星添加给body
-			  document.body.appendChild(star);
-			  
-			  //每隔100毫秒创建一个星
-			  window.setTimeout("createStar()",100);
-			}
-			
-			//星的动画
-			function starAnimate(){
-			  //遍历starList数组
-			  for(var i=starList.length-1;i>=0;i--){
-				//透明度递增
-				starList[i].style.opacity = new Number(starList[i].style.opacity) + speed[i];
-				//透明度大于等于1时，透明度开始递减
-				if(starList[i].style.opacity >= 1){
-				  speed[i] *= -1;
-				}
-				
-				//透明度小于0时，将星删除
-				if(starList[i].style.opacity < 0){
-				  document.body.removeChild(starList[i]);//将星从body中删除
-				  starList.splice(i,1);//删除数组中的当前星
-				  speed.splice(i,1);//删除数组中当前星的渐变速度
-				}
-			  }
-	  
-			  //每隔5毫秒更改一次透明度
-			  window.setTimeout("starAnimate()",5);
-			}
-		  </script>
+	
+	 <script type="text/javascript">
+	      
+	      var raf;//帧频
+	      var left = 0;//div的左边距
+	      
+	      function init(){
+	        //将所有图片添加给div2
+	        document.getElementById("div2").innerHTML = document.getElementById("div1").innerHTML;
+	        
+	        //鼠标进入图片区域
+	        document.getElementById("view_box").onmouseover = function(){
+	          //清除raf帧频
+	          window.cancelAnimationFrame(raf);
+	        }
+	        
+	        //鼠标离开图片区域
+	        document.getElementById("view_box").onmouseout = function(){
+	          //重新调用动画
+	          moveImage();
+	        }
+	        
+	        //调用动画
+	        moveImage();
+	      }
+	      
+	      function moveImage(){
+	        //设置div左边距
+	        document.getElementById("inner").style.left = left+"px";
+	        left-=2;
+	        
+	        //第一组图片移出显示区域，重置左边距
+	        if(left <= -3200){
+	          left = 0;
+	        }
+	        
+	        //帧频：每秒60帧，每隔16.66毫秒执行一次
+	        raf = window.requestAnimationFrame(moveImage);
+	      }
+	      
+	    </script>
+		
 	</head>
 	<body onload="init()">
 
@@ -149,6 +148,23 @@
 			  <li><a href="shipin.html" >冲泡方法</a></li>
 			</ul>
 		  </div>
+		  <body onload="init()">
+		      
+		      <div id="view_box">
+		        <div id="inner">
+		          <div id="div1">
+		            <img src="js/8.jpg" />
+		            <img src="js/7.png" />
+		            <img src="js/6.png" />
+		            <img src="js/5.png" />
+		            <img src="js/4.jpg" />
+		            <img src="js/3.jpg" />
+		            <img src="js/2.jpg" />
+		            <img src="js/1.jpg"/>
+		          </div>
+		          <div id="div2"></div>
+		        </div>
+		      </div>
 		<div id="ba"> 
 		<div class="lishi">
 			<p>西湖龙井位列十大名茶之首，无论人喝不喝茶，懂不懂茶，几乎都知道西湖龙井。

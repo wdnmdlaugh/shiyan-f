@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
+<html>
+  <head>
     <title>十大名茶</title>
     <meta charset="utf-8" />
     <style type="text/css">
       html,body{
         width:100%;
-      	height:100%;
-      	margin:0px;
+        height:100%;
+        margin:0px;
+        overflow:hidden;
       }
       ul{
         list-style-type:none;
@@ -21,6 +22,7 @@
       	font-weight:bold ;
       	font-family:"bodoni mt";
       	font-size: 18px;
+    
       }
       .menu ul li:nth-of-type(2){
       	background-color: white;
@@ -36,74 +38,107 @@
       	line-height:50px;
       	text-align:center;
       }
-      /* 图片列表 */
-      .image_list{
-      	margin:50px auto 0px auto;
-        width:80%;
-      	height:70%;
-      }
-      .image_list ul{
+      #mainDiv{
+        position:relative;
+        left:0px;
+        top:0px;
         width:100%;
-      	height:100%;
-      	display:flex;
-      	justify-content:space-around;
+        height:100%;
+        transition:all 1s ease;
       }
-      .image_list ul li{
-      	width:12%;
-      	height:100%;
-      	border-radius:25px;
-      	opacity:0.7;
-      	background-position:center;
-      	background-repeat:no-repeat;
-      	background-size:auto 100%;
+      #mainDiv div{
+        width:100%;
+        height:100%;
+        background-repeat:no-repeat;
+        background-position:center;
+        background-size:cover;
       }
-      .image_list ul li:nth-of-type(1){
+      .page1{
         background-image:url("res/tea1.jpg");
       }
-      .image_list ul li:nth-of-type(2){
+      .page2{
         background-image:url("res/tea2.jpg");
       }
-      .image_list ul li:nth-of-type(3){
+      .page3{
         background-image:url("res/tea3.jpg");
       }
-      .image_list ul li:nth-of-type(4){
+      .page4{
         background-image:url("res/tea4.jpg");
       }
-      .image_list ul li:nth-of-type(5){
+      .page5{
         background-image:url("res/tea5.png");
       }
-      .image_list ul li:nth-of-type(6){
+      .page6{
         background-image:url("res/tea6.jpg");
       }
-      .image_list ul li:nth-of-type(7){
+      .page7{
         background-image:url("res/tea7.jpeg");
       }
-      .image_list ul li:nth-of-type(8){
+      .page8{
         background-image:url("res/tea8.jpg");
       }
-      .image_list ul li:nth-of-type(9){
+      .page9{
         background-image:url("res/tea9.jpg");
       }
-      .image_list ul li:nth-of-type(10){
+      .page10{
         background-image:url("res/tea10.jpg");
       }
-      .image_list ul li:hover{
-        opacity:1;
+      .btn_list{
+        position:fixed;
+        top:30%;
+        right:50px;
       }
-      a{
-        width:200px;
-      	line-height:50px;
-      	text-align:center;
-      	color:#FFFFFF;
-          text-decoration:none;
+      .btn_list ul{
+        list-style-type:none;
       }
-      a:hover img{
-        opacity:0.5;
+      .btn_list li{
+        width:20px;
+        height:20px;
+        margin-top:10px;
+        border-radius:20px;
+        background-color:#3D3D3D;
+        cursor:pointer;
+      }
+      #li0{
+        background-color:#10508D;
       }
     </style>
+    <script type="text/javascript">
+      var index = 0;//当前显示第几屏。0代表第1屏
+      
+      window.onload = function(){
+    	  
+        //为li添加鼠标点击事件
+        for(var i=0;i<=9;i++){
+          document.getElementById("li"+i).onclick = function(){
+            index = this.id.replace("li","");//通过id获取当前显示第几屏
+            pageAnimate();
+          }
+        }
+        
+        //窗口大小重置
+        window.onresize = function(){
+          document.getElementById("mainDiv").style.transition = "all 0s ease";
+          pageAnimate();
+          window.setTimeout(function(){
+            document.getElementById("mainDiv").style.transition = "all 1s ease";
+          },10);
+        }
+      }
+      
+      function pageAnimate(){
+        var offsetHeight = document.body.offsetHeight;
+        document.getElementById("mainDiv").style.top = -(offsetHeight * index)+"px";
+        
+        for(var i=0;i<=9;i++){
+          document.getElementById("li"+i).style.backgroundColor = "#3D3D3D";
+        }
+        document.getElementById("li"+index).style.backgroundColor = "#10508D";
+      }
+    </script>
   </head>
   <body>
-    <div class="menu">
+  <div class="menu">
       <ul>
         <li>制茶过程</li>
         <li>十大名茶</li>
@@ -112,18 +147,31 @@
 		<li><a href="shipin.html" >冲泡方法</a></li>
       </ul>
     </div>
-    <div class="image_list">
+    </br></br></br>
+    <div id="mainDiv">
+      <div class="page1"></div>
+      <div class="page2"></div>
+      <div class="page3"></div>
+      <div class="page4"></div>
+      <div class="page5"></div>
+      <div class="page6"></div>
+      <div class="page7"></div>
+      <div class="page8"></div>
+      <div class="page9"></div>
+      <div class="page10"></div>
+    </div>
+    <div class="btn_list">
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li id="li0"></li>
+        <li id="li1"></li>
+        <li id="li2"></li>
+        <li id="li3"></li>
+        <li id="li4"></li>
+        <li id="li5"></li>
+        <li id="li6"></li>
+        <li id="li7"></li>
+        <li id="li8"></li>
+        <li id="li9"></li>
       </ul>
     </div>
     
